@@ -4,7 +4,7 @@ import Card from "../Components/Card";
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Favs = () => {
-  const dentistasFavoritos = localStorage.getItem('favorites')
+  const dentistasFavoritos = localStorage.getItem('favs')
   const dentistasFavoritosParsed = JSON.parse(dentistasFavoritos)
   const cards = dentistasFavoritosParsed ? dentistasFavoritosParsed : []
 

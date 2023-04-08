@@ -26,8 +26,17 @@ export const themeReducer = (state, action) => {
       throw new Error();
   }
 }
+const initialFavState = JSON.parse(localStorage.getItem('favs'))||[];
 
+const favReducer = (state, action) => {
+  switch(action.type){
+    case 'ADD_FAV' :
+      return [...state, action.payload]
+      default:
+         throw new Error()
+  }
 
+}
 
 export const ContextGlobal = createContext(undefined);
 
@@ -37,6 +46,12 @@ export const ContextProvider = ({ children }) => {
   const url = "https://jsonplaceholder.typicode.com/users"
   const [dentistas, setDentistas] = useState([])
   const [themeState, themeDispatch] = useReducer(themeReducer, initialThemeState);
+  const [favState, favDispatch] = useReducer(favReducer, initialFavState )
+
+  useEffect(() => {
+    localStorage.setItem('favs', JSON.stringify(favState))
+  }, [favState])
+  
 
 
   useEffect(() => {
@@ -53,7 +68,7 @@ export const ContextProvider = ({ children }) => {
   }, [])
 
   return (
-    <ContextGlobal.Provider value={{ themeState, themeDispatch, dentistas }}>
+    <ContextGlobal.Provider value={{ themeState, themeDispatch, dentistas, favState, favDispatch }}>
       {children}
     </ContextGlobal.Provider>
   );

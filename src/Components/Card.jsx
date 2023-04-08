@@ -1,39 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import doc from "../images/doctor.jpg";
+import { useContextGlobal } from "./utils/global.context";
+
 
 const Card = ({ name, username, id }) => {
-
   const [favorite, setFavorite] = useState(false)
+  const {favDispatch} = useContextGlobal()
+  const {dentistas} = useContextGlobal()
   const addFav = ()=>{
     // Aqui iria la logica para agregar la Card en el localStorage
-    const favCardsParsed = JSON.parse(localStorage.getItem('favorites'));
-    if (favCardsParsed) {
-      const cardsFound = favCardsParsed.find(card => card.id === id)
-      let newFav = []
-      if (cardsFound) {
-        newFav = favCardsParsed.filter(card => card.id !== id)
-      } else {
-        newFav = [...favCardsParsed, { name, username, id }]
-      }
-      localStorage.setItem('favorites', JSON.stringify(newFav))
-    } else {
-      localStorage.setItem('favorites', JSON.stringify([{ name, username, id }]))
-    }
-    cardFav()
-  }
 
-  const cardFav = useCallback(() => {
-    const favCards = JSON.parse(localStorage.getItem('favorites'));
-    if (favCards) {
-      const fav = favCards.find(card => card.id === id)
-      setFavorite(!!fav)
-    }
-  }, [id])
+    favDispatch({type: 'ADD_FAV', payload:dentistas})
 
-  useEffect(() => {
-    cardFav()
-  }, [cardFav])
+}
 
    return (
     <div className="card">
