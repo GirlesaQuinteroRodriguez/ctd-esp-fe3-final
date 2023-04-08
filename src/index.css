@@ -113,6 +113,12 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+img {
+  width: 100%; 
+  height: auto; 
+  object-fit: cover;
+}
+
 .dark{
   background-color: #12121296;
   color: white;

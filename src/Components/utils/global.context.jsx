@@ -23,7 +23,7 @@ export const themeReducer = (state, action) => {
     case "SWITCH_LIGHT":
       return themes.light
     default:
-      throw new Error;
+      throw new Error();
   }
 }
 

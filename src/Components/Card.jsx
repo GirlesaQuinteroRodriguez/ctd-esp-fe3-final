@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import doc from "../images/doctor.jpg";
 
 const Card = ({ name, username, id }) => {
 
@@ -38,7 +39,7 @@ const Card = ({ name, username, id }) => {
     <div className="card">
         {/* En cada card deberan mostrar en name - username y el id */}
         <Link to={`/dentista/${id}`}>
-        <img src="./images/doctor.jpg" alt="dentista" />
+        <img src={doc} alt="dentista" />
         <h4>
           {username}
         </h4>
