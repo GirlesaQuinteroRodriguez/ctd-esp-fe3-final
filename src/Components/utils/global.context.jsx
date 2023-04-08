@@ -51,9 +51,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('favs', JSON.stringify(favState))
   }, [favState])
-  
-
-
+ 
   useEffect(() => {
     try {
       const fetchData = async () => {
